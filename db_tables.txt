@@ -1,0 +1,6 @@
+CREATE TABLE `plants` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `plant_type` varchar(255) NOT NULL,
+  `planted` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
