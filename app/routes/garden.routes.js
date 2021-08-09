@@ -1,5 +1,5 @@
 module.exports = (app) => {
-  const plants = require("../controllers/plants.controller.js");
+  const plants = require("../controllers/plant.controller.js");
 
   app.post("/plants", plants.create);
 

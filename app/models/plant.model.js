@@ -1,7 +1,7 @@
 const sql = require("./db.js");
 
 const Plant = function (plant) {
-  this.name = plant.email;
+  this.name = plant.name;
   this.plant_type = plant.plant_type;
   this.planted = plant.planted;
 };
@@ -19,8 +19,8 @@ Plant.create = (newPlant, result) => {
   });
 };
 
-Plant.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM plants WHERE id = ${customerId}`, (err, res) => {
+Plant.findById = (plantId, result) => {
+  sql.query(`SELECT * FROM plants WHERE id = ${plantId}`, (err, res) => {
     if (err) {
       console.log("error :  err");
       result(err, null);
@@ -45,8 +45,15 @@ Plant.getAll = (result) => {
       return;
     }
 
-    console.log("plants : ", res);
-    result(null, res);
+    if (res.length) {
+      console.log("Plant(s) data :", res);
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+
+    // result(null, res);
   });
 };
 
